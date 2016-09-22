@@ -1,0 +1,14 @@
+{
+  "name": "---react-learning---",
+  "version": "1.0.0",
+  "description": "He, this is my learning for react",
+  "main": "null",
+  "scripts": {
+    "test": "null"
+  },
+  "keywords": [
+    "react"
+  ],
+  "author": "songjz",
+  "license": "MIT"
+}
