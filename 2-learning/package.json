@@ -1,0 +1,19 @@
+{
+  "name": "2-learning",
+  "version": "1.0.0",
+  "description": "this is my 2 react-learning",
+  "main": "server.js",
+  "scripts": {
+    "test": "node server.js",
+    "start": "node server.js"
+  },
+  "keywords": [
+    "react"
+  ],
+  "author": "song",
+  "license": "MIT",
+  "dependencies": {
+    "body-parser": "^1.15.2",
+    "express": "^4.14.0"
+  }
+}

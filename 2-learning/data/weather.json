@@ -1,0 +1,22 @@
+[
+    {
+        "id": "1388534400000",
+        "place": "beijing",
+        "weather": "300"
+    },
+    {
+        "id": "1474639647234",
+        "place": "shanghai",
+        "weather": "500"
+    },
+    {
+        "id": 1474644492290,
+        "place": "hefei",
+        "weather": "2000000"
+    },
+    {
+        "id": 1474644776399,
+        "place": "guangzhou",
+        "weather": "900"
+    }
+]
