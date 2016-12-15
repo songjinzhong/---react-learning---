@@ -4,7 +4,10 @@
 
 ```
 npm install
+// for dev
 npm start
+// for production
+NODE_ENV=production npm start
 ```
 
 ## 细节
