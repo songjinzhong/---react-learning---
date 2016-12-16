@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="../build/react.js"></script>
+    <script src="../build/react-dom.js"></script>
+    <script src="../build/browser.min.js"></script>
+  </head>
+  <body>
+    <div id="example"></div>
+    <script type="text/babel" id='r'>
+
+      var data = 123;
+
+      var MyTitle = React.createClass({
+        propTypes: {
+          title: React.PropTypes.number.isRequired,
+        },
+
+        getDefaultProps: function(){
+          return {
+            text: 'default Text'
+          }
+        },
+
+        render: function() {
+          return <div> <h1>{this.props.title} </h1>
+            <p>{this.props.text}</p>
+            </div>;
+        }
+      });
+
+      ReactDOM.render(
+        <MyTitle title={data} />,
+        document.getElementById('example')
+      );
+
+    </script>
+    <h2>-------------------</h2>
+    <h2>代码：</h2>
+    <textarea id="ta"></textarea>
+    <script type="text/javascript">
+      var r = document.getElementById('r');
+      var ta = document.getElementById('ta');
+      ta.textContent = r.innerHTML
+      ta.style.width = 2 * ta.scrollWidth + 'px';
+      ta.style.height = ta.scrollHeight + 'px';
+    </script>
+  </body>
+</html>
+

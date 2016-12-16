@@ -67,6 +67,38 @@ ReactDOM.render(
 );
 ```
 
+### [PropTypes](https://songjinzhong.github.io/react-learning/4-static/PropTypes)
+
+有时候需要对一些属性设置类型，或者设置默认值，可以通过 PropTypes 来设置默认类型，通过 getDefaultProps 来设置默认值：
+
+```javascript
+var data = 123;
+
+var MyTitle = React.createClass({
+  // 默认属性集合
+  propTypes: {
+    title: React.PropTypes.number.isRequired,
+  },
+  // 默认值集合
+  getDefaultProps: function(){
+    return {
+      text: 'default Text'
+    }
+  },
+
+  render: function() {
+    return <div> <h1>{this.props.title} </h1>
+      <p>{this.props.text}</p>
+      </div>;
+  }
+});
+
+ReactDOM.render(
+  <MyTitle title={data} />,
+  document.getElementById('example')
+);
+```
+
 ## 参考
 
 >[https://github.com/reactjs/react-router-tutorial](https://github.com/reactjs/react-router-tutorial)
