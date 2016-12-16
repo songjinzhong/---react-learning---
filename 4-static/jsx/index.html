@@ -7,11 +7,31 @@
   </head>
   <body>
     <div id="example"></div>
-    <script type="text/babel">
+    <script type="text/babel" id="r">
+      var array = ['shanghai', 'beijing', 'nanjing']
       ReactDOM.render(
-        <h1>Hello, world!</h1>,
+        <div>
+          <h1>Hello, world!</h1>
+          <ol>
+          {
+            array.map(function(p){
+              return <li>hello, {p}</li>
+            })
+          }
+          </ol>
+        </div>,
         document.getElementById('example')
       );
+    </script>
+    <h2>-------------------</h2>
+    <h2>代码：</h2>
+    <textarea id="ta"></textarea>
+    <script type="text/javascript">
+      var r = document.getElementById('r');
+      var ta = document.getElementById('ta');
+      ta.textContent = r.innerHTML
+      ta.style.width = 2 * ta.scrollWidth + 'px';
+      ta.style.height = ta.scrollHeight + 'px';
     </script>
   </body>
 </html>
