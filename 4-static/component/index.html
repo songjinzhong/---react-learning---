@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="../build/react.js"></script>
+    <script src="../build/react-dom.js"></script>
+    <script src="../build/browser.min.js"></script>
+  </head>
+  <body>
+    <div id="example"></div>
+    <div id="example2"></div>
+    <script type="text/babel" id="r">
+      var Hello = React.createClass({
+        render: function() {
+          return <h1>Hello {this.props.name} !</h1>;
+        }
+      });
+
+      ReactDOM.render(
+        <Hello name="shanghai" />,
+        document.getElementById('example')
+      );
+      var HelloChildren = React.createClass({
+        render: function(){
+          return (
+            <ol>
+            {
+              React.Children.map(this.props.children, function(data){
+                return <li>{data}</li>
+              })
+            }
+            </ol>
+          )
+        }
+      });
+      ReactDOM.render(
+        <HelloChildren>
+          <span>Hello</span>
+          <span>Child</span>
+        </HelloChildren>,
+        document.getElementById('example2')
+      );
+    </script>
+    <h2>-------------------</h2>
+    <h2>代码：</h2>
+    <textarea id="ta"></textarea>
+    <script type="text/javascript">
+      var r = document.getElementById('r');
+      var ta = document.getElementById('ta');
+      ta.textContent = r.innerHTML
+      ta.style.width = 2 * ta.scrollWidth + 'px';
+      ta.style.height = ta.scrollHeight + 'px';
+    </script>
+  </body>
+</html>
