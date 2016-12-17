@@ -142,6 +142,64 @@ ReactDOM.render(
 
 对于一些 input 表单来所，onChange 用于监听是否改变。
 
+### [lifeCycle](https://songjinzhong.github.io/react-learning/4-static/lifeCycle)
+
+组件的生命周期，每个组件都有一个生命周期，从大的范围来讲，组件有三种状态，mount（已插入真实 DOM），update（更新插入的 DOM），unmount（移除真实 DOM），但是函数有五个时间段：
+
+1. componentWillMount()
+2. componentDidMount()
+3. componentWillUpdate(object nextProps, object nextState)
+4. componentDidUpdate(object prevProps, object prevState)
+5. componentWillUnmount()
+
+will 表示还没执行，did 表示已经执行。
+
+```javascript
+var Hello = React.createClass({
+  getInitialState: function () {
+    return {
+      opacity: 1.0
+    };
+  },
+  componentWillMount: function(){
+    console.log('component will mount')
+  },
+  componentDidMount: function () {
+    console.log('component did mount')
+    this.timer = setInterval(() => {
+      var opacity = this.state.opacity;
+      opacity -= .05;
+      if (opacity < 0.1) {
+        opacity = 1.0;
+      }
+      this.setState({
+        opacity: opacity
+      });
+    }, 100);
+  },
+  componentWillUpdate: function(){
+    console.log('component will update')
+  },
+  conponentDidUpdate: function(){
+    console.log('component did update')
+  },
+  render: function () {
+    return (
+      <div style={{opacity: this.state.opacity}}>
+        Hello {this.props.name}
+      </div>
+    );
+  }
+});
+
+ReactDOM.render(
+  <Hello name="world"/>,
+  document.getElementById('example')
+);
+```
+
+从输出的结果来看，执行的顺序就是按照上面的顺序，而且会发现 `componentWillUpdate`、`componentDidUpdate`函数会重复执行，因为 100 毫秒透明度就变化了一次。
+
 ## 参考
 
 >[https://github.com/reactjs/react-router-tutorial](https://github.com/reactjs/react-router-tutorial)
