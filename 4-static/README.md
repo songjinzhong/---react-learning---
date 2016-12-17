@@ -200,6 +200,91 @@ ReactDOM.render(
 
 从输出的结果来看，执行的顺序就是按照上面的顺序，而且会发现 `componentWillUpdate`、`componentDidUpdate`函数会重复执行，因为 100 毫秒透明度就变化了一次。
 
+### [ajaxAndPromise](https://songjinzhong.github.io/react-learning/4-static/ajaxAndPromise)
+
+通过 ajax 可以获取来自服务器的数据，比如：
+
+```javascript
+var UserGist = React.createClass({
+  getInitialState: function() {
+    return {
+      username: '',
+      lastGistUrl: ''
+    };
+  },
+
+  componentDidMount: function() {
+    this.getData = $.get(this.props.source, function(result) {
+      var lastGist = result[0];
+      this.setState({
+        username: lastGist.owner.login,
+        lastGistUrl: lastGist.html_url
+      });
+    }.bind(this));
+  },
+
+  componentWillUnmount: function(){
+    this.getData.abort();
+  },
+
+  render: function() {
+    return (
+      <div>
+        {this.state.username}'s last gist is <a href={this.state.lastGistUrl}>here</a>.
+      </div>
+    );
+  }
+});
+
+ReactDOM.render(
+  <UserGist source="https://api.github.com/users/octocat/gists" />,
+  document.getElementById('example')
+);
+```
+
+之前使用 isMounted() 函数，貌似后来被取消了，然后使用 componentWillUnmount 函数来 abort 之前的 ajax 请求。
+
+不过感觉 ES6 提供了 Promise 之后，貌似方便多了。
+
+```javascript
+var PromiseDemo = React.createClass({
+  getInitialState: function(){
+    return {
+      loading: true,
+      data: null,
+      error: null
+    }
+  },
+  componentDidMount: function(){
+    this.props.promise.then(
+      value => this.setState({loading: false, data: value}),
+      error => this.setState({loading: false, error: error})
+    )
+  },
+  render: function(){
+    if(this.state.loading){
+      return <div>loading...</div>
+    }
+    else if(this.state.error != null){
+      return <div>error...{this.state.error.message}</div>
+    }
+    else{
+      var p = this.state.data[0].html_url
+      return <div>
+        <h1>the URL is:</h1>
+        <p>{p}</p>
+      </div>
+    }
+  }
+});
+ReactDOM.render(
+  <PromiseDemo promise={$.getJSON('https://api.github.com/users/octocat/gists')} />,
+  document.getElementById('example2')
+);
+```
+
+学好 ES6 真的很重要。
+
 ## 参考
 
 >[https://github.com/reactjs/react-router-tutorial](https://github.com/reactjs/react-router-tutorial)

@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="../build/react.js"></script>
+    <script src="../build/react-dom.js"></script>
+    <script src="../build/browser.min.js"></script>
+    <script src="../build/jquery.min.js"></script>
+  </head>
+  <body>
+    <div id="example"></div>
+    <div id="example2"></div>
+    <script type="text/babel" id="r">
+var UserGist = React.createClass({
+  getInitialState: function() {
+    return {
+      username: '',
+      lastGistUrl: ''
+    };
+  },
+
+  componentDidMount: function() {
+    this.getData = $.get(this.props.source, function(result) {
+      var lastGist = result[0];
+      this.setState({
+        username: lastGist.owner.login,
+        lastGistUrl: lastGist.html_url
+      });
+    }.bind(this));
+  },
+
+  componentWillUnmount: function(){
+    this.getData.abort();
+  },
+
+  render: function() {
+    return (
+      <div>
+        {this.state.username}'s last gist is <a href={this.state.lastGistUrl}>here</a>.
+      </div>
+    );
+  }
+});
+
+ReactDOM.render(
+  <UserGist source="https://api.github.com/users/octocat/gists" />,
+  document.getElementById('example')
+);
+
+var PromiseDemo = React.createClass({
+  getInitialState: function(){
+    return {
+      loading: true,
+      data: null,
+      error: null
+    }
+  },
+  componentDidMount: function(){
+    this.props.promise.then(
+      value => this.setState({loading: false, data: value}),
+      error => this.setState({loading: false, error: error})
+    )
+  },
+  render: function(){
+    if(this.state.loading){
+      return <div>loading...</div>
+    }
+    else if(this.state.error != null){
+      return <div>error...{this.state.error.message}</div>
+    }
+    else{
+      var p = this.state.data[0].html_url
+      return <div>
+        <h1>the URL is:</h1>
+        <p>{p}</p>
+      </div>
+    }
+  }
+});
+ReactDOM.render(
+  <PromiseDemo promise={$.getJSON('https://api.github.com/users/octocat/gists')} />,
+  document.getElementById('example2')
+);
+    </script>
+    <h2>-------------------</h2>
+    <h2>代码：</h2>
+    <textarea id="ta"></textarea>
+    <script type="text/javascript">
+      var r = document.getElementById('r');
+      var ta = document.getElementById('ta');
+      ta.textContent = r.innerHTML
+      ta.style.width = 3 * ta.scrollWidth + 'px';
+      ta.style.height = ta.scrollHeight + 'px';
+    </script>
+  </body>
+</html>
