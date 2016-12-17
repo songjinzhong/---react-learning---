@@ -99,6 +99,49 @@ ReactDOM.render(
 );
 ```
 
+### [state](https://songjinzhong.github.io/react-learning/4-static/state)
+
+在 react 中，this 有两个对象，props 用来处理 stable 的属性，而 state 用来处理可变的属性，而且 state 会自动改变，无需用户进行其他操作：
+
+```javascript
+var ClickButton = React.createClass({
+  getInitialState: function() {
+    return {
+      times: 0,
+      value: 'hello'
+    };
+  },
+  handleClick: function(event) {
+    this.setState({times: this.state.times + 1});
+  },
+  handleChange: function(event){
+    this.setState({
+      value: event.target.value
+    })
+  },
+  render: function() {
+    return (
+      <div>
+        <span onClick={this.handleClick}>
+          You have clicked this {this.state.times} times.
+        </span>
+        <div>
+          <input type="text" value={this.state.value} onChange={this.handleChange}/>
+          <p>{this.state.value}</p>
+        </div>
+      </div>
+    );
+  }
+});
+
+ReactDOM.render(
+  <ClickButton />,
+  document.getElementById('example')
+);
+```
+
+对于一些 input 表单来所，onChange 用于监听是否改变。
+
 ## 参考
 
 >[https://github.com/reactjs/react-router-tutorial](https://github.com/reactjs/react-router-tutorial)

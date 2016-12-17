@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="../build/react.js"></script>
+    <script src="../build/react-dom.js"></script>
+    <script src="../build/browser.min.js"></script>
+  </head>
+  <body>
+    <div id="example"></div>
+    <script type="text/babel" id="r">
+      var ClickButton = React.createClass({
+        getInitialState: function() {
+          return {
+            times: 0,
+            value: 'hello'
+          };
+        },
+        handleClick: function(event) {
+          this.setState({times: this.state.times + 1});
+        },
+        handleChange: function(event){
+          this.setState({
+            value: event.target.value
+          })
+        },
+        render: function() {
+          return (
+            <div>
+              <span onClick={this.handleClick}>
+                You have clicked this {this.state.times} times.
+              </span>
+              <br/>
+              <br/>
+              <div>
+                <input type="text" value={this.state.value} onChange={this.handleChange}/>
+                <span>{this.state.value}</span>
+              </div>
+            </div>
+          );
+        }
+      });
+
+      ReactDOM.render(
+        <ClickButton />,
+        document.getElementById('example')
+      );
+    </script>
+    <h2>-------------------</h2>
+    <h2>代码：</h2>
+    <textarea id="ta"></textarea>
+    <script type="text/javascript">
+      var r = document.getElementById('r');
+      var ta = document.getElementById('ta');
+      ta.textContent = r.innerHTML
+      ta.style.width = 2 * ta.scrollWidth + 'px';
+      ta.style.height = ta.scrollHeight + 'px';
+    </script>
+  </body>
+</html>
+
