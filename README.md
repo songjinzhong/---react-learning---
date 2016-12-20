@@ -15,3 +15,7 @@ this is my learning for react
 ## [4-static](https://github.com/songjinzhong/react-learning/tree/master/4-static) 
 
 这个教程来自于阮一峰老师，刚入门的时候就已经看过了，今天把这个教程再理一遍。
+
+## [5-flux](https://github.com/songjinzhong/react-learning/tree/master/5-flux)
+
+理解 react 中的 flux 流程。
