@@ -1,19 +1,18 @@
 {
-  "name": "5-flux",
+  "name": "extremely-simple-flux-demo",
   "version": "1.0.0",
-  "description": "no",
-  "main": "no",
+  "description": "an extremely simple demo for the Flux architecture",
+  "main": "index.jsx",
   "scripts": {
-    "test": "no"
-  },
-  "repository": {
-    "type": "git",
-    "url": "no"
+    "start": "webpack-dev-server --progress",
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [
-    "no"
+    "Demo",
+    "Flux",
+    "React"
   ],
-  "author": "songjz",
+  "author": "Ruan Yifeng",
   "license": "MIT",
   "dependencies": {
     "babel-loader": "~5.3.2",
