@@ -5,8 +5,8 @@ export default React.createClass({
     return(
       <div>
         <p>{this.props.value}</p>
-        <button onClick={this.props.onIncrement}>+</button>
-        <button onClick={this.props.onDecrement}>-</button>
+        <button onClick={this.props.add}>+</button>
+        <button onClick={this.props.sub}>-</button>
       </div>
     )
   }

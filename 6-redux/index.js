@@ -1,10 +1,10 @@
 import React from 'react'
-import { render } from 'react-dom'
+import ReactDOM from 'react-dom'
 import { createStore } from 'redux'
 import Counter from './components/counter'
 
 let fn = (state = 2, action) => {
-  switch (action){
+  switch (action.type){
     case 'ADD':
       return state + 1
     case 'SUB':
@@ -16,11 +16,11 @@ let fn = (state = 2, action) => {
 
 const stone = createStore(fn)
 
-const r = () => render(
+const r = () => ReactDOM.render(
   <Counter
     value = {stone.getState()}
-    onIncrement = {() => {stone.dispatch({ type: 'ADD' })}}
-    onDecrement = {() => {stone.dispatch({ type: 'SUB' })}}
+    add = {() => {stone.dispatch({ type: 'ADD' })}}
+    sub = {() => {stone.dispatch({ type: 'SUB' })}}
   />,
   document.getElementById('example')
 )
