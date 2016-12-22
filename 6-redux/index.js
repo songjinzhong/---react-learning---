@@ -9,6 +9,8 @@ let fn = (state = 2, action) => {
       return state + 1
     case 'SUB':
       return state - 1
+    case 'RESET':
+      return 0
     default:
       return state
   }
@@ -21,6 +23,7 @@ const r = () => ReactDOM.render(
     value = {stone.getState()}
     add = {() => {stone.dispatch({ type: 'ADD' })}}
     sub = {() => {stone.dispatch({ type: 'SUB' })}}
+    reset = {() => {stone.dispatch({ type: 'RESET' })}}
   />,
   document.getElementById('example')
 )

@@ -71,6 +71,8 @@
 	      return state + 1;
 	    case 'SUB':
 	      return state - 1;
+	    case 'RESET':
+	      return 0;
 	    default:
 	      return state;
 	  }
@@ -86,6 +88,9 @@
 	    },
 	    sub: function sub() {
 	      stone.dispatch({ type: 'SUB' });
+	    },
+	    reset: function reset() {
+	      stone.dispatch({ type: 'RESET' });
 	    }
 	  }), document.getElementById('example'));
 	};
@@ -22576,6 +22581,15 @@
 	        'button',
 	        { onClick: this.props.sub },
 	        '-'
+	      ),
+	      _react2.default.createElement(
+	        'div',
+	        null,
+	        _react2.default.createElement(
+	          'button',
+	          { onClick: this.props.reset },
+	          '\u5F52\u96F6'
+	        )
 	      )
 	    );
 	  }
