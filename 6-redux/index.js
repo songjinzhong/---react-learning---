@@ -1,7 +1,11 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import { createStore } from 'redux'
+import { createStore, applyMiddleware } from 'redux'
 import Counter from './components/counter'
+
+import createLogger from 'redux-logger'
+
+const logger = createLogger()
 
 let fn = (state = 2, action) => {
   switch (action.type){
@@ -16,7 +20,7 @@ let fn = (state = 2, action) => {
   }
 }
 
-const stone = createStore(fn)
+const stone = createStore(fn, applyMiddleware(logger))
 
 const r = () => ReactDOM.render(
   <Counter
