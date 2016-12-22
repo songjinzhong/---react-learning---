@@ -18,4 +18,8 @@ this is my learning for react
 
 ## [5-flux](https://github.com/songjinzhong/react-learning/tree/master/5-flux)
 
-理解 react 中的 flux 流程。
+理解 react 中的 flux 数据流。
+
+## [6-redux](https://github.com/songjinzhong/react-learning/tree/master/6-redux)
+
+理解 redux 的数据流，并实现[官方](https://github.com/reactjs/redux)的一个小 [demo](https://songjinzhong.github.io/react-learning/6-redux/)，加减器
