@@ -2,8 +2,10 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import { createStore, applyMiddleware } from 'redux'
 import Counter from './components/counter'
+import Fetch from './components/fetch'
 
 import createLogger from 'redux-logger'
+import thunk from 'redux-thunk'
 
 const logger = createLogger()
 
@@ -33,5 +35,57 @@ const r = () => ReactDOM.render(
 )
 
 r()
-
 stone.subscribe(r)
+
+const fn2 = (state = '', action) => {
+  switch (action.type){
+    case 'default':
+      return state = 'loading...'
+    case 'success':
+      return state = action.data
+    case 'error':
+      return state = action.error
+    default:
+      return state
+  }
+}
+const store2 = createStore(fn2, applyMiddleware(thunk))
+
+function getJSON(){
+  return fetch('https://api.github.com/users/songjinzhong');
+}
+
+function success(data){
+  return {
+    type: 'success',
+    data: data.status
+  }
+}
+
+function f_error(error){
+  return{
+    type: 'error',
+    error: error
+  }
+}
+
+function FetchData() {
+
+  return function (dispatch) {
+    return getJSON().then(
+      data => dispatch(success(data)),
+      error => dispatch(f_error(error))
+    );
+  };
+}
+
+const r2 = () => ReactDOM.render(
+  <Fetch
+    data = {store2.getState()}
+    getData = {() => store2.dispatch(FetchData())}
+  />,
+  document.getElementById('example2')
+)
+
+r2()
+store2.subscribe(r2)
