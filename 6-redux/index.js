@@ -39,7 +39,7 @@ stone.subscribe(r)
 
 const fn2 = (state = '', action) => {
   switch (action.type){
-    case 'default':
+    case 'fetching':
       return state = 'loading...'
     case 'success':
       return state = action.data
@@ -55,14 +55,14 @@ function getJSON(){
   return fetch('https://api.github.com/users/songjinzhong');
 }
 
-function success(data){
+function r_success(data){
   return {
     type: 'success',
-    data: data.status
+    data: data
   }
 }
 
-function f_error(error){
+function r_error(error){
   return{
     type: 'error',
     error: error
@@ -72,10 +72,19 @@ function f_error(error){
 function FetchData() {
 
   return function (dispatch) {
+    dispatch({type: 'fetching'})
     return getJSON().then(
-      data => dispatch(success(data)),
-      error => dispatch(f_error(error))
-    );
+      response => {
+        if(response.status >= 400){
+          r_error('error happen')
+        }
+        return response.json()
+      }
+    ).then(
+      data => {
+        dispatch(r_success(JSON.stringify(data)))
+      }
+    )
   };
 }
 

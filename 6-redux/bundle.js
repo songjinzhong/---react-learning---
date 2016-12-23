@@ -133,14 +133,14 @@
 	  return fetch('https://api.github.com/users/songjinzhong');
 	}
 
-	function success(data) {
+	function r_success(data) {
 	  return {
 	    type: 'success',
-	    data: data.status
+	    data: data
 	  };
 	}
 
-	function f_error(error) {
+	function r_error(error) {
 	  return {
 	    type: 'error',
 	    error: error
@@ -150,10 +150,13 @@
 	function FetchData() {
 
 	  return function (dispatch) {
-	    return getJSON().then(function (data) {
-	      return dispatch(success(data));
-	    }, function (error) {
-	      return dispatch(f_error(error));
+	    return getJSON().then(function (response) {
+	      if (response.status >= 400) {
+	        r_error('error happen');
+	      }
+	      return response.json();
+	    }).then(function (data) {
+	      dispatch(r_success(JSON.stringify(data)));
 	    });
 	  };
 	}
