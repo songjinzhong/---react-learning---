@@ -48,6 +48,73 @@ store.dispatch( action )// 执行 ADD 操作，更新 state
 store.subscribe(render) // 更新 view
 ```
 
+### 添加异步 redux-thunk 操作
+
+对于异步操作，必须要有回掉函数，因为 dispatch 只能接受 含有 type 的对象，可以通过 中间件 `redux-thunk` 来改变，能接受函数参数：
+
+```javascript
+// 启用中间件
+const store2 = createStore(
+  fn2, 
+  applyMiddleware(thunk)
+)
+```
+
+编写异步 fetch 函数：
+
+```javascript
+function r_success(data){
+  return {
+    type: 'success',
+    data: data.status
+  }
+}
+
+function r_error(error){
+  return{
+    type: 'error',
+    error: error
+  }
+}
+
+function FetchData() {
+  dispatch({type: 'fetching'})
+  return function (dispatch) {
+    return fetch('https://api.github.com/users/songjinzhong').then(
+      response => {
+        if(response.status >= 400){
+          r_error('error happen')
+        }
+        return response.json()
+      }
+    ).then(
+      data => {
+        dispatch(r_success(JSON.stringify(data)))
+      }
+    )
+  };
+}
+```
+
+接下来是 reducer ，这里对于 state，我用的是 bug 很多的简单写法（这个 bug 是可以多次点击获取按钮，而未对当前状态进行判断）：
+
+```javascript
+const reducer2 = (state = '', action) => {
+  switch (action.type){
+    case 'fetching':
+      return state = 'loading...'
+    case 'success':
+      return state = action.data
+    case 'error':
+      return state = action.error
+    default:
+      return state
+  }
+}
+```
+
+简单的异步操作就实现了。
+
 ### 参考
 
 >[https://github.com/reactjs/redux/tree/master/examples/counter](https://github.com/reactjs/redux/tree/master/examples/counter)
