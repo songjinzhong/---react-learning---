@@ -23,3 +23,7 @@ this is my learning for react
 ## [6-redux](https://github.com/songjinzhong/react-learning/tree/master/6-redux)
 
 理解 redux 的数据流，并实现[官方](https://github.com/reactjs/redux)的一个小 [demo](https://songjinzhong.github.io/react-learning/6-redux/)，加减器
+
+## [7-react-redux](https://github.com/songjinzhong/react-learning/tree/master/7-react-redux)
+
+在第六部分，已经学习了关于如何使用 redux（没有涉及异步），redux 的作者又针对 react 写了一个 react-redux，也来学习一下。
