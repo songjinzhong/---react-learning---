@@ -29,3 +29,7 @@ this is my learning for react
 ## [7-react-redux](https://github.com/songjinzhong/react-learning/tree/master/7-react-redux)
 
 在第六部分，已经学习了关于如何使用 redux（没有涉及异步），redux 的作者又针对 react 写了一个 react-redux，也来学习一下。
+
+## [8-react-en](https://github.com/songjinzhong/react-learning/tree/master/8-react-en)
+
+react 英文文档教程的例子，感觉还是要看英文文档，才能对 react 更加深入的了解[React-docs](https://facebook.github.io/react/docs/hello-world.html)
