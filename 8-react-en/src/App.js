@@ -5,6 +5,8 @@ import Clock from './component/clock'
 import Button from './component/Button'
 import Login from './component/Login'
 import Number from './component/Number'
+import Form from './component/Form'
+
 var Baobab = require("baobab")
 
 class Hello extends React.Component {
@@ -30,6 +32,7 @@ class App extends Component {
         <Button baobab={tree}/>
         <Login />
         <Number />
+        <Form />
       </div>
     );
   }
