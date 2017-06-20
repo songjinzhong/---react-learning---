@@ -4,7 +4,7 @@ import './index.css'
 const arr = [2,4,6,8,10];
 
 const List = arr.map(n => {
-  return <li>{n}</li>
+  return <li key={n.toString()}>{n}</li>
 })
 
 class ListDemo extends Component{
