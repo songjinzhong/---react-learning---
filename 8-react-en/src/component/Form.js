@@ -17,7 +17,7 @@ class Form extends React.Component{
   }
   handleChange(e){
     const name = e.target.nodeName.toLowerCase();
-    if(name == "input"){
+    if(name === "input"){
       this.setState({
         value: e.target.value
       })

@@ -7,6 +7,7 @@ import Login from './component/Login'
 import Number from './component/Number'
 import Form from './component/Form'
 import Select from './component/Select'
+import Water from './component/Water'
 
 var Baobab = require("baobab")
 
@@ -21,6 +22,18 @@ class Hello extends React.Component {
 }
 
 class App extends Component {
+  constructor(p){
+    super(p)
+    this.state = {
+      scale : "c"
+    }
+    this.handleChange = this.handleChange.bind(this)
+  }
+  handleChange(e){
+    this.setState({
+      scale: e.target.value
+    })
+  }
   render() {
     var tree = new Baobab({
       timer: 0
@@ -36,6 +49,15 @@ class App extends Component {
         <Form />
         <br/>
         <Select />
+        <br />
+        <Water scale={this.state.scale}/>
+        <label>
+          Pick your scale:
+          <select value={this.state.scale} onChange={this.handleChange}>
+            <option value="f">Fahrenheit</option>
+            <option value="c">Celsius</option>
+          </select>
+        </label>
       </div>
     );
   }
