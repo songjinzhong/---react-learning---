@@ -6,6 +6,7 @@ import Button from './component/Button'
 import Login from './component/Login'
 import Number from './component/Number'
 import Form from './component/Form'
+import Select from './component/Select'
 
 var Baobab = require("baobab")
 
@@ -33,6 +34,8 @@ class App extends Component {
         <Login />
         <Number />
         <Form />
+        <br/>
+        <Select />
       </div>
     );
   }
