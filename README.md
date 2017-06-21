@@ -1,3 +1,7 @@
+## demo
+
+[demo](https://songjinzhong.github.io/react-learning/8-react-en/build/)
+
 this is my learning for react
 
 ## [1-learning](https://github.com/songjinzhong/react-learning/tree/master/1-learning)
