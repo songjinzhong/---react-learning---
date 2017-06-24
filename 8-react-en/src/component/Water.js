@@ -6,7 +6,7 @@ const scaleNames = {
 }
 
 function IsBoiling(props){
-  if((props.temperature >= 100 && props.scale == "c")||(props.temperature >= 230 && props.scale == "f")){
+  if((props.temperature >= 100 && props.scale === "c")||(props.temperature >= 230 && props.scale === "f")){
     return <p>the water would boil.</p>
   }else{
     return <p>the water would not boil.</p>

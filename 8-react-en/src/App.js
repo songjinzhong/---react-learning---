@@ -8,6 +8,7 @@ import Number from './component/Number'
 import Form from './component/Form'
 import Select from './component/Select'
 import Water from './component/Water'
+import Child from './component/Children'
 
 var Baobab = require("baobab")
 
@@ -58,6 +59,8 @@ class App extends Component {
             <option value="c">Celsius</option>
           </select>
         </label>
+        <br/>
+        <Child/>
       </div>
     );
   }
