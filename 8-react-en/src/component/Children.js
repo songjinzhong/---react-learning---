@@ -4,7 +4,7 @@ function Dialog(props){
     return (
         <div className={"father-" + props.color}>
             <h1 className="dialog-title">{props.title}</h1>
-            <p class="dialog-message">
+            <p className="dialog-message">
                 {props.message}
             </p>
             {props.children}
